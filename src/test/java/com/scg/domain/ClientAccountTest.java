@@ -5,6 +5,8 @@
  */
 package com.scg.domain;
 
+import com.scg.util.Name;
+import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,9 +20,23 @@ public class ClientAccountTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testClientAccount() {
+        Name n=new Name("Coyote","Wiley");   
+        ClientAccount clientAccount=new ClientAccount("Dixya Lamichhane", n);
+        Assert.assertEquals(n, clientAccount.getContact()); //tests getName of clientAccount.
+       Assert.assertEquals("Dixya Lamichhane", clientAccount.getName());
+    }
+    @Test
+    public void testGetSetClientContact(){
+        Name client=new Name("Hello","World");
+        client.setFirstName("Hello");
+        client.setMiddleName("Everyone");
+        client.setLastName("World");
+        Assert.assertEquals("World",client.getLastName());
+        Assert.assertEquals("Hello",client.getFirstName());
+        Assert.assertEquals("Everyone",client.getMiddleName());       
+        
+        
     }
     
 }

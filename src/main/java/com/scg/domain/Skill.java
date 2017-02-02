@@ -9,10 +9,23 @@ package com.scg.domain;
  *
  * @author dixya
  */
+
 public enum Skill {
     PROJECT_MANAGER,
     SYSTEM_ARCHITECT,
     SOFTWARE_ENGINEER,
     SOFTWARE_TESTER,
     UNKNOWN_SKILL;
+    
+    private final int rate=0;
+    
+    
+    public int getRate() {
+        return rate;
+    }
+    @Override
+    public String toString(){
+        return "no skill";
+        
+    }
 }

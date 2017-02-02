@@ -7,6 +7,7 @@ package com.scg.util;
 
 import static java.lang.Byte.hashCode;
 import static java.lang.Character.hashCode;
+import java.util.Objects;
 
 /**
  *
@@ -30,22 +31,39 @@ public final class Name extends Object{
 //Construct a Name.
     }
 
-    
-    public boolean equals(Object other){
-         if(!(other instanceof Name)){
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.fname);
+        hash = 73 * hash + Objects.hashCode(this.lname);
+        hash = 73 * hash + Objects.hashCode(this.mname);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
-         }
-            final Name o=(Name)other;
-            return ((lname==null&&o.lname==null)||
-                     ((lname!=null&& o.lname!=null)&&
-                      lname.equals(o.lname))) &&
-                       ((fname==null&&o.fname==null)||
-                     ((fname!=null&& o.fname!=null)&&
-                      fname.equals(o.fname)))&&
-                        ((mname==null&&o.mname==null)||
-                     ((mname!=null&& o.mname!=null)&&
-                      mname.equals(o.mname)));
-    }//Compare names for equivalence.
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Name other = (Name) obj;
+        if (!Objects.equals(this.fname, other.fname)) {
+            return false;
+        }
+        if (!Objects.equals(this.lname, other.lname)) {
+            return false;
+        }
+        if (!Objects.equals(this.mname, other.mname)) {
+            return false;
+        }
+        return true;
+    }
+
   
     public String getFirstName(){
         return fname;//Getter for property firstName.
@@ -56,27 +74,30 @@ public final class Name extends Object{
     public String getMiddleName(){
        return mname; //Getter for property middleName.
     }
-    public int hashCode(){
-        return hashCode;
-    }
+    
     public void setFirstName(String firstName){
         this.fname=firstName;
         //Setter for property first.
 
 
     }
-    void setLastName(String lastName){
+   public void setLastName(String lastName){
         this.lname=lastName;
 //setter for last name.
     }
-    void setMiddleName(String middleName){
+   public  void setMiddleName(String middleName){
         this.mname=middleName;//Setter for property middleName.
     }
     public String toString(){
             final StringBuilder namepattern=new StringBuilder();
            namepattern.append(lname);
+           namepattern.append(",");
+
            namepattern.append(fname);
+           if(mname!=null){
+           namepattern.append(",");
            namepattern.append(mname);
+           }
            String output=namepattern.toString();
            return output;
         //Create string representation of this object in the format
