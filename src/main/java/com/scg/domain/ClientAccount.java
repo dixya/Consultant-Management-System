@@ -11,20 +11,23 @@ import com.scg.util.Name;
  *
  * @author dixya
  */
-public class ClientAccount extends Object implements Account{
-    private  String clientAccountName;
-    private  Name clientContact;
+public class ClientAccount implements Account{
+    private  String name;
+    private  Name contact;
     public ClientAccount(String name, Name contact){
-        this.clientAccountName=name;
-        this.clientContact=contact;//Creates a new instance of ClientAccount.
+        this.name=name;
+        this.contact=contact;//Creates a new instance of ClientAccount.
     }
 
+    /**
+     * Getter for the name
+     * @return name of the account
+     */
     @Override
-    /* gets account name */
     public String getName() {
         //String cname;
        // cname=clientContact.getLastName() +","+clientContact.getFirstName();        
-        return clientAccountName;
+        return name;
         
     }
 
@@ -34,17 +37,17 @@ public class ClientAccount extends Object implements Account{
     }
     public Name getContact(){
        
-        return clientContact;
+        return contact;
         
     }
     
     
     public void setContact(Name contact){
-         String clientContactLastName=clientContact.getLastName();
-        String clientContactFirstName=clientContact.getFirstName();
-        String clientContactMiddleName=clientContact.getMiddleName();
+         String clientContactLastName=this.contact.getLastName();
+        String clientContactFirstName=this.contact.getFirstName();
+        String clientContactMiddleName=this.contact.getMiddleName();
         
-        this.clientContact=new Name(clientContactLastName,clientContactFirstName,clientContactMiddleName);
+        this.contact=new Name(clientContactLastName,clientContactFirstName,clientContactMiddleName);
         
     }
     

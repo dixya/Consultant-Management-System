@@ -5,42 +5,80 @@
  */
 package com.scg.domain;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
  *
  * @author dixya
  */
-public class ConsultantTime extends Object{
-    int hours;
-    java.time.LocalDate date;
-    Skill skillType;
+public class ConsultantTime {
+    private LocalDate date;
     private Account account;
-    public ConsultantTime(java.time.LocalDate date, Account account, Skill skillType, int hours){
-        if(hours>0) 
-        {
-            this.hours=hours;
-            this.date=date;
-            this.skillType=skillType;//Creates a new instance of ConsultantTime.
-            }
-        else
-            throw new IllegalArgumentException("Hour cannot be less than 0");
+    private final Skill skillType;
+    private int hours;
+
+    public ConsultantTime(LocalDate date, Account account, Skill skillType, int hours){
+        this.date=date;
+        this.account = account;
+        this.skillType=skillType;
+        setHours(hours);
     }
 
-   
-    @Override
-    public int hashCode(){
-        int hash = 5;
-        hash = 37 * hash + this.hours;
-        hash = 37 * hash + Objects.hashCode(this.date);
-       return hash;
+    public Account getAccount() {
+        return account;//Getter for property account.
+    }
+    public LocalDate getDate(){
+        return date;
+        
+    }
+    
+    /**
+     * Getter for property hours.
+     * @return Value of property hours.
+     */
+    public int getHours() {
+        return hours;
+    }
+    
+    /**
+     * Getter for property skill.
+     * @return  Value of property skill.
+     */
+    public Skill getSkill(){
+        return skillType;
+    }
+    public boolean isBillable(){
+        return account.isBillable();
+    }
+    public void setAccount(Account account){
+        this.account=account;//Setter for property account.
+    }
+    public void setDate(LocalDate date){  
+       this.date=date; //Setter for property date.
     }
 
     /**
-     *
-     * @param obj
-     * @return
+     * Setter for property hours.
+     * @param hours New value of property hours must be > 0.
+     * @throws IllegalArgumentException if the hours are <= 0. 
      */
+    public void setHours(int hours) throws IllegalArgumentException{
+        if(hours<=0)
+            throw new IllegalArgumentException("New value of property hours must be > 0.");
+        this.hours=hours;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.date);
+        hash = 67 * hash + Objects.hashCode(this.account);
+        hash = 67 * hash + Objects.hashCode(this.skillType);
+        hash = 67 * hash + this.hours;
+        return hash;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -59,46 +97,20 @@ public class ConsultantTime extends Object{
         if (!Objects.equals(this.date, other.date)) {
             return false;
         }
+        if (!Objects.equals(this.account, other.account)) {
+            return false;
+        }
+        if (this.skillType != other.skillType) {
+            return false;
+        }
         return true;
     }
-
-    public Account getAccount() {
-        return account;//Getter for property account.
-    }
-    public java.time.LocalDate getDate(){
-        return date;
-        
-    }
-    public int getHours(){
-        return hours;//Getter for property hours.
-    }
-    public Skill getSkill(){
-        return skillType;//Getter for property skill.
-    }
-    public boolean isBillable(){
-        if(hours>0)
-            return true;
-        else
-            return false;
-        
-        //Determines if the time is billable.
-    }
-    public void setAccount(Account account){
-        this.account=account;//Setter for property account.
-    }
-    public void setDate(java.time.LocalDate date){  
-       this.date=date; //Setter for property date.
-    }
-    public void setHours(int hours){
-        if(hours>0)
-        this.hours=hours;
-        else 
-        throw new IllegalArgumentException("hours should be grater than zero");//Setter for property hours.hours should be greater than 0.
-    }
+    
+    
     @Override
     public String toString(){
         StringBuilder sb=new StringBuilder();
-        sb.append(hours);
+        sb.append("ConsultantTime(" + date + ", " + account.getName() + ", " + skillType + ", " + hours + ")");
         return sb.toString();//Creates a string representation of the consultant time.
     }
     

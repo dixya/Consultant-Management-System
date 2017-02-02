@@ -15,7 +15,7 @@ public class Consultant extends Object {
     String ConsultantMiddleName;
     String ConsultantLastName;
 
-    Consultant(Name name){
+    public Consultant(Name name){
        this.ConsultantFirstName= name.getFirstName();
        this.ConsultantMiddleName= name.getMiddleName();
        this.ConsultantLastName= name.getLastName();
@@ -29,10 +29,13 @@ public class Consultant extends Object {
     public String toString(){
         StringBuilder ConsName=new StringBuilder();
         ConsName.append(ConsultantLastName);
-        ConsName.append(" ");
+        ConsName.append(",");
         ConsName.append(ConsultantFirstName);
-        ConsName.append(" ");
+        if(ConsultantMiddleName!=null){
+             ConsName.append(",");
         ConsName.append(ConsultantMiddleName);
+
+        }
         return ConsName.toString();
     }
     

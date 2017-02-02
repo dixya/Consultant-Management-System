@@ -23,10 +23,7 @@ public enum NonBillableAccount implements Account {
 
     @Override
     public String getName() {
-        
-        return this.name();
-        
-        
+        return name();
     }
 
     @Override

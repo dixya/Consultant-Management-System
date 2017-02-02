@@ -5,29 +5,32 @@
  */
 package com.scg.util;
 
-import static java.lang.Byte.hashCode;
-import static java.lang.Character.hashCode;
 import java.util.Objects;
 
 /**
+ * Encapsulates the first, middle and last name of a person.
  *
  * @author dixya
  */
-public final class Name extends Object{
+public final class Name {
+
     private String fname;
     private String lname;
     private String mname;
-   public Name(){
-         //Creates a new instance of Name
+
+    public Name() {
+        //Creates a new instance of Name
     }
-    public Name(String lastName, String firstName){
-        this.lname=lastName;
-        this.fname=firstName;//Construct a Name.
-  }
-    public Name(String lastName, String firstName, String middleName){
-             this.fname=firstName;
-             this.lname=lastName;
-             this.mname=middleName;// this.hashcode=calchashcode();        
+
+    public Name(String lastName, String firstName) {
+        this.lname = lastName;
+        this.fname = firstName;//Construct a Name.
+    }
+
+    public Name(String lastName, String firstName, String middleName) {
+        this.fname = firstName;
+        this.lname = lastName;
+        this.mname = middleName;// this.hashcode=calchashcode();        
 //Construct a Name.
     }
 
@@ -64,45 +67,49 @@ public final class Name extends Object{
         return true;
     }
 
-  
-    public String getFirstName(){
+    public String getFirstName() {
         return fname;//Getter for property firstName.
     }
-    public String getLastName(){
+
+    public String getLastName() {
         return lname;//Getter for property lastName.
     }
-    public String getMiddleName(){
-       return mname; //Getter for property middleName.
+
+    public String getMiddleName() {
+        return mname; //Getter for property middleName.
     }
-    
-    public void setFirstName(String firstName){
-        this.fname=firstName;
+
+    public void setFirstName(String firstName) {
+        this.fname = firstName;
         //Setter for property first.
 
-
-    }
-   public void setLastName(String lastName){
-        this.lname=lastName;
-//setter for last name.
-    }
-   public  void setMiddleName(String middleName){
-        this.mname=middleName;//Setter for property middleName.
-    }
-    public String toString(){
-            final StringBuilder namepattern=new StringBuilder();
-           namepattern.append(lname);
-           namepattern.append(",");
-
-           namepattern.append(fname);
-           if(mname!=null){
-           namepattern.append(",");
-           namepattern.append(mname);
-           }
-           String output=namepattern.toString();
-           return output;
-        //Create string representation of this object in the format
-    //"LastName, FirstName MiddleName".
     }
 
-    
+    /**
+     * setter for last name.
+     *
+     * @param lastName
+     */
+    public void setLastName(String lastName) {
+        this.lname = lastName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.mname = middleName;//Setter for property middleName.
+    }
+
+    public String toString() {
+        final StringBuilder namepattern = new StringBuilder();
+        namepattern.append(lname);
+        namepattern.append(",");
+
+        namepattern.append(fname);
+        if (mname != null) {
+            namepattern.append(" ");
+            namepattern.append(mname);
+        }
+        return namepattern.toString();
+
+    }
+
 }

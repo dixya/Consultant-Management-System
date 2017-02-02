@@ -11,13 +11,18 @@ package com.scg.domain;
  */
 
 public enum Skill {
-    PROJECT_MANAGER,
-    SYSTEM_ARCHITECT,
-    SOFTWARE_ENGINEER,
-    SOFTWARE_TESTER,
-    UNKNOWN_SKILL;
+    //For now, set rate to zero for all skill
+    PROJECT_MANAGER(0),
+    SYSTEM_ARCHITECT(0),
+    SOFTWARE_ENGINEER(0),
+    SOFTWARE_TESTER(0),
+    UNKNOWN_SKILL(0);
     
-    private final int rate=0;
+    private final int rate;
+    
+    private Skill(int rate) {
+        this.rate = rate;
+    }
     
     
     public int getRate() {
@@ -25,7 +30,7 @@ public enum Skill {
     }
     @Override
     public String toString(){
-        return "no skill";
+        return name();
         
     }
 }
