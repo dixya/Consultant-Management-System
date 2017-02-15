@@ -1,0 +1,12 @@
+com/scg/domain/InvoiceLineItemTest.class
+com/scg/domain/InvoiceHeaderTest.class
+com/scg/domain/InvoiceTest.class
+com/scg/domain/TimeCardTest.class
+com/scg/domain/ClientAccountTest.class
+com/scg/domain/StateCodeTest.class
+com/scg/domain/ConsultantTimeTest.class
+com/scg/domain/ConsultantTest.class
+com/scg/domain/SkillTest.class
+com/scg/util/NameTest.class
+com/scg/domain/NonBillableAccountTest.class
+com/scg/domain/InvoiceFooterTest.class

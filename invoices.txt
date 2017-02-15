@@ -1,0 +1,211 @@
+The Small Consulting Group
+Street Number:1616 Index Ct.
+City: Renton
+State postal code: 98058
+
+Invoice for:
+Acme Industries
+Invoice For Month of:March 
+Invoice Date: 03/01/06
+Date       Consultant             Skill             Hours       Charge
+------   -----------------  ------------------    ---------   --------------                                  
+03/06/06 Coder,Carl          SOFTWARE_ENGINEER		8	1200
+
+03/07/06 Coder,Carl          SOFTWARE_ENGINEER		8	1200
+
+
+
+The Small Consulting Group								Page:1
+===========================================================================================================
+The Small Consulting Group
+Street Number:1616 Index Ct.
+City: Renton
+State postal code: 98058
+
+Invoice for:
+Acme Industries
+Invoice For Month of:March 
+Invoice Date: 03/01/06
+Date       Consultant             Skill             Hours       Charge
+------   -----------------  ------------------    ---------   --------------                                  
+03/06/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+03/07/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+03/06/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+03/07/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+
+ Total:                                                 16    2400.00
+
+The Small Consulting Group								Page:2
+===========================================================================================================
+The Small Consulting Group
+Street Number:1616 Index Ct.
+City: Renton
+State postal code: 98058
+
+Invoice for:
+FooBar Enterprises
+Invoice For Month of:March 
+Invoice Date: 03/01/06
+Date       Consultant             Skill             Hours       Charge
+------   -----------------  ------------------    ---------   --------------                                  
+03/01/06 Coder,Carl          SOFTWARE_ENGINEER		8	1200
+
+03/02/06 Coder,Carl          SOFTWARE_ENGINEER		8	1200
+
+
+
+The Small Consulting Group								Page:1
+===========================================================================================================
+The Small Consulting Group
+Street Number:1616 Index Ct.
+City: Renton
+State postal code: 98058
+
+Invoice for:
+FooBar Enterprises
+Invoice For Month of:March 
+Invoice Date: 03/01/06
+Date       Consultant             Skill             Hours       Charge
+------   -----------------  ------------------    ---------   --------------                                  
+03/03/06 Coder,Carl          SOFTWARE_ENGINEER		8	1200
+
+03/01/06 Coder,Carl          SOFTWARE_ENGINEER		8	1200
+
+03/02/06 Coder,Carl          SOFTWARE_ENGINEER		8	1200
+
+03/03/06 Coder,Carl          SOFTWARE_ENGINEER		8	1200
+
+03/08/06 Coder,Carl          SOFTWARE_ENGINEER		8	1200
+
+
+
+The Small Consulting Group								Page:2
+===========================================================================================================
+The Small Consulting Group
+Street Number:1616 Index Ct.
+City: Renton
+State postal code: 98058
+
+Invoice for:
+FooBar Enterprises
+Invoice For Month of:March 
+Invoice Date: 03/01/06
+Date       Consultant             Skill             Hours       Charge
+------   -----------------  ------------------    ---------   --------------                                  
+03/09/06 Coder,Carl          SOFTWARE_ENGINEER		12	1800
+
+03/01/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+03/02/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+03/03/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+03/08/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+
+
+The Small Consulting Group								Page:3
+===========================================================================================================
+The Small Consulting Group
+Street Number:1616 Index Ct.
+City: Renton
+State postal code: 98058
+
+Invoice for:
+FooBar Enterprises
+Invoice For Month of:March 
+Invoice Date: 03/01/06
+Date       Consultant             Skill             Hours       Charge
+------   -----------------  ------------------    ---------   --------------                                  
+03/09/06 Architect,Ann S.    SOFTWARE_ENGINEER		12	1800
+
+03/06/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/08/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/09/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/10/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+
+
+The Small Consulting Group								Page:4
+===========================================================================================================
+The Small Consulting Group
+Street Number:1616 Index Ct.
+City: Renton
+State postal code: 98058
+
+Invoice for:
+FooBar Enterprises
+Invoice For Month of:March 
+Invoice Date: 03/01/06
+Date       Consultant             Skill             Hours       Charge
+------   -----------------  ------------------    ---------   --------------                                  
+03/11/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/01/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+03/02/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+03/03/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+03/08/06 Architect,Ann S.    SOFTWARE_ENGINEER		8	1200
+
+
+
+The Small Consulting Group								Page:5
+===========================================================================================================
+The Small Consulting Group
+Street Number:1616 Index Ct.
+City: Renton
+State postal code: 98058
+
+Invoice for:
+FooBar Enterprises
+Invoice For Month of:March 
+Invoice Date: 03/01/06
+Date       Consultant             Skill             Hours       Charge
+------   -----------------  ------------------    ---------   --------------                                  
+03/09/06 Architect,Ann S.    SOFTWARE_ENGINEER		12	1800
+
+03/06/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/08/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/09/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/10/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+
+
+The Small Consulting Group								Page:6
+===========================================================================================================
+The Small Consulting Group
+Street Number:1616 Index Ct.
+City: Renton
+State postal code: 98058
+
+Invoice for:
+FooBar Enterprises
+Invoice For Month of:March 
+Invoice Date: 03/01/06
+Date       Consultant             Skill             Hours       Charge
+------   -----------------  ------------------    ---------   --------------                                  
+03/11/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/13/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/14/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+03/17/06 Architect,Ann S.    SYSTEM_ARCHITECT		8	1600
+
+
+ Total:                                                108   19400.00
+
+The Small Consulting Group								Page:7
+===========================================================================================================
