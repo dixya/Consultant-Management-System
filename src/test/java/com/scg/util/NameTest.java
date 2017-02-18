@@ -32,7 +32,7 @@ public class NameTest {
     @Test
     public void testToString(){
         Name newName=new Name("last","first","middle");
-        assertEquals("last,first,middle",newName.toString());
+        assertEquals("last,first middle",newName.toString());
         
     }
 

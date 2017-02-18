@@ -6,13 +6,10 @@
 package com.scg.domain;
 
 import com.scg.util.Name;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.time.LocalDate;
 import java.time.Month;
 import org.junit.Assert;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

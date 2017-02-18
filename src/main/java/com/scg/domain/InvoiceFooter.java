@@ -29,7 +29,7 @@ public class InvoiceFooter {
     }
     /**
      * Print the formatted footer.
-     * @return 
+     * @return string value.
      */
     @Override
     public String toString(){

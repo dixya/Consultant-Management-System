@@ -12,26 +12,27 @@ import java.util.Objects;
  * @author dixya
  */
 public class Address {
+
     private String streetNumber;
     private String city;
     private StateCode state;
     private String postalCode;
+
     /**
      * Construct an Address.
+     *
      * @param streetNumber
      * @param city
      * @param state
-     * @param postalCode 
+     * @param postalCode
      */
-    public Address(String streetNumber, String city, StateCode state, String postalCode){
-        this.streetNumber=streetNumber;
-        this.city=city;
-        this.state=state;
-        this.postalCode=postalCode;
-        
-    }
+    public Address(String streetNumber, String city, StateCode state, String postalCode) {
+        this.streetNumber = streetNumber;
+        this.city = city;
+        this.state = state;
+        this.postalCode = postalCode;
 
-    
+    }
 
     @Override
     public int hashCode() {
@@ -69,44 +70,52 @@ public class Address {
         }
         return true;
     }
-    
+
     /**
      * Gets the city for this address.
+     * @return city in string format.
      */
-    public String getCity(){
+    public String getCity() {
         return city;
-        
+
     }
+
     /**
      * Gets the postal code for this address.
+     * @return string value of postal code.
      */
-    public String getPostalCode(){
+    public String getPostalCode() {
         return postalCode;
-        
+
     }
+
     /**
      * Get the state for this address.
+     * @return state code.
      */
-    public StateCode getState(){
+    public StateCode getState() {
         return state;
-        
+
     }
+
     /**
      * Get the street number for this address.
+     * @return street number in string format.
      */
-    public String getStreetNumber(){
+    public String getStreetNumber() {
         return streetNumber;
-        
+
     }
-    
+
     /**
      * Prints this address in the form: street number, city, state postal code
+     *
      * @return String
      */
     @Override
-    public String toString(){
+    public String toString() {
         //return String.format(locale.US,"%s%n%s,%s %s", streetNumber,city,state,postalCode);
-        StringBuilder sb=new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         sb.append("Street Number:");
         sb.append(streetNumber);
         sb.append("\nCity: ");
@@ -116,9 +125,4 @@ public class Address {
         return sb.toString();
     }
 
-
-
-
-
-    
 }

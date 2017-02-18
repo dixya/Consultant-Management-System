@@ -21,7 +21,7 @@ public class InvoiceHeader {
     private ClientAccount client;
     private LocalDate invoiceDate;
     private Month invoiceForMonth;
-    private static final String HEADER_FORMAT="%s%n%s%n%nInvoice for:%n%s%nInvoice For Month of:%4$tB %nInvoice Date: %5$tD%n";
+    private static final String HEADER_FORMAT="%s%n%s%n%nInvoice for:%s%nInvoice For Month of:%4$tB %nInvoice Date: %5$tD%n";
     private static final String LINE_HEADER_FORMAT="Date       Consultant             Skill             Hours       Charge%n"+"------   -----------------  ------------------    ---------   --------------                                  %n";
     /**
      * Construct an InvoiceHeader.
@@ -40,7 +40,7 @@ public class InvoiceHeader {
     }
     /**
      * Print this InvoiceHeader.
-     * @return 
+     * @return string value.
      */
     @Override
     public String toString(){
@@ -58,13 +58,7 @@ public class InvoiceHeader {
         
         
         
-//        StringBuilder sb=new StringBuilder();
-//        sb.append(businessName);
-//        sb.append("\n"+businessAddress);
-//        sb.append("\nInvoice for: \n"+client.getName()+"\n"+businessAddress+"\n"+client.getContact());
-//        sb.append("\nInvoice for month of:"+invoiceForMonth);
-//        sb.append("\nInvoice Date:"+invoiceDate);
-//        return sb.toString();
+
 
         
         

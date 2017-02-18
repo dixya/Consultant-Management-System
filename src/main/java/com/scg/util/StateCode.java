@@ -6,7 +6,7 @@
 package com.scg.util;
 
 /**
- *
+ * Enum StateCode holds the value of state code.
  * @author dixya
  */
 public enum StateCode {

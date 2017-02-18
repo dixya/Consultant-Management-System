@@ -22,7 +22,7 @@ public class ConsultantTest {
     public void testConsultantTest(){
         Consultant newConsultant=new Consultant(new Name("Dixya","Lamichhane"));
         Name newName=new Name("Dixya","Lamichhane");
-        Assert.assertEquals(newName.toString(), newConsultant.toString());
+        assertEquals(newName.toString(), newConsultant.toString());
         
         
         

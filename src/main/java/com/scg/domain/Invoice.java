@@ -19,7 +19,7 @@ import java.util.Locale;
 import java.util.Properties;
 
 /**
- *
+ * 
  * @author dixya
  */
 public class Invoice {
@@ -28,23 +28,23 @@ public class Invoice {
     final private Month invoiceMonth;
     final private int invoiceYear;
     private int itemsPerPage = 5;
-    private int itemsPrinted = 0;
+    private int printedItems = 0;
     private int totHours;
     private int totCharges;
-
-//     final String bizName=null;
-//     final String bizStreet;
-//     final String bizCity;
-//     final String bizState;
-//     final String bizZip;
     public String bizName;
+    public String bizStreet;
+    public String bizCity;
+    public String bizZip;
     Address bizAddress;
     private final static String propFileName = "invoice.properties";
+    /** Creates a list to add invoice line items */
     final List<InvoiceLineItem> lineItems;
+    /** Creates a list to extract features of client from consultantTime */
     final List<ConsultantTime> billableHours;
     int nonBillableHours;
     LocalDate invoiceDate;
     LocalDate startDate;
+    public String bizState;
 
 //    static{
 //         Properties prop = new Properties();
@@ -73,9 +73,9 @@ public class Invoice {
     /**
      * Construct an Invoice for a client.
      *
-     * @param client
-     * @param invoiceMonth
-     * @param invoiceYear
+     * @param client instance of clientaccount.
+     * @param invoiceMonth month to which the invoice belongs.
+     * @param invoiceYear year to which the invoice belongs.
      */
     public Invoice(ClientAccount client, Month invoiceMonth, int invoiceYear) {
         this.client = client;
@@ -85,20 +85,20 @@ public class Invoice {
         billableHours = new ArrayList<>();
         this.invoiceDate = LocalDate.now();
         startDate = LocalDate.of(invoiceYear, invoiceMonth, 1);
-        totHours=0;
-        totCharges=0;
-        
+        totHours = 0;
+        totCharges = 0;
+
     }
 
     /**
      * Add an invoice line item to this Invoice.
      *
-     * @param lineItem
+     * @param lineItem instance of invoiceLineItem.
      */
     public void addLineItem(InvoiceLineItem lineItem) {
         lineItems.add(lineItem);
-        totCharges+=lineItem.getCharge();
-        totHours+=lineItem.getHours();
+        totCharges += lineItem.getCharge();
+        totHours += lineItem.getHours();
 
     }
 
@@ -110,8 +110,8 @@ public class Invoice {
      */
     public void extractLineItems(TimeCard timeCard) {
         billableHours.addAll(timeCard.getBillableHoursForClient(client.getName()));
-        totHours=0;
-        totCharges=0;
+        totHours = 0;
+        totCharges = 0;
         for (ConsultantTime ct : billableHours) {
             final LocalDate currentDate = ct.getDate();
             if (currentDate.getMonth() == startDate.getMonth()) {
@@ -119,13 +119,14 @@ public class Invoice {
                 addLineItem(item);
                 //lineItems.add(item);
             }
-            
+
         }
-        
+
     }
 
     /**
      * Get the client for this Invoice.
+     * @return clientaccount.
      */
     public ClientAccount getClientAccount() {
         return this.client;
@@ -134,6 +135,7 @@ public class Invoice {
 
     /**
      * Get the invoice month.
+     * @return Month
      */
     public Month getInvoiceMonth() {
         return startDate.getMonth();
@@ -143,7 +145,7 @@ public class Invoice {
      * Get the start date for this Invoice, this is the earliest date/time a
      * ConsultantTime instance may have and still be billed on this invoice.
      *
-     * @return
+     * @return startDate.
      */
     public LocalDate getStartDate() {
 
@@ -154,20 +156,20 @@ public class Invoice {
     /**
      * Get the total charges for this Invoice.
      *
-     * @return
+     * @return total charges for this invoice.
      */
     public int getTotalCharges() {
-        
+
         return totCharges;
     }
 
     /**
      * Get the total hours for this Invoice.
      *
-     * @return
+     * @return total hours
      */
     public int getTotalHours() {
-        
+
         return totHours;
 
     }
@@ -175,13 +177,13 @@ public class Invoice {
     /**
      * Create a formatted string containing the printable invoice.
      *
-     * @return
+     * @return string value
      * @throws java.io.IOException
      */
     public String toReportString() throws IOException {
         Invoice invoice;
         Properties prop = new Properties();
-        String propFileName = "invoice.properties";
+        //String propFileName = "invoice.properties";
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
         try {
             if (inputStream != null) {
@@ -195,10 +197,10 @@ public class Invoice {
         }
 
         bizName = prop.getProperty("businessName");
-        final String bizStreet = prop.getProperty("businessStreet");
-        final String bizCity = prop.getProperty("businessCity");
-        final String bizState = prop.getProperty("businessState");
-        final String bizZip = prop.getProperty("businessZip");
+        bizStreet = prop.getProperty("businessStreet");
+        bizCity = prop.getProperty("businessCity");
+        bizState = prop.getProperty("businessState");
+        bizZip = prop.getProperty("businessZip");
         bizAddress = new Address(bizStreet, bizCity, StateCode.valueOf(bizState), bizZip);
 
         InvoiceHeader header = new InvoiceHeader(bizName, bizAddress, client, this.getStartDate(), this.getInvoiceMonth());
@@ -208,42 +210,39 @@ public class Invoice {
         final Formatter formatter = new Formatter(sb, Locale.US);
         formatter.format("%s", header);
         int i = 0;
-        for (i = 0, itemsPrinted =itemsPrinted- 1; i < lineItems.size(); i++, itemsPrinted++) {
+        for (i = 0, printedItems = printedItems - 1; i < lineItems.size(); i++, printedItems++) {
             final InvoiceLineItem invoiceLineItem = lineItems.get(i);
             formatter.format("%s%n", invoiceLineItem);
-            
-            if (itemsPrinted % itemsPerPage == 0) {
+
+            if (printedItems % itemsPerPage == 0) {
                 footer.incrementPageNumber();
                 
                 formatter.format("%s%n%s", footer, header);
-                
+
             }
-            
+
         }
         footer.incrementPageNumber();
-        formatter.format("%n Total: %50d %10.2f", getTotalHours(), (double)getTotalCharges()).format("%s", footer);
-        
+        formatter.format("%n Total: %50d %10.2f", getTotalHours(), (double) getTotalCharges()).format("%s", footer);
+
         final String s = formatter.toString();
         formatter.close();
         return s;
-//        for(InvoiceLineItem l:lineItems){
-//            sb.append(l.date+"\t\t\t");
-//            sb.append(l.getConsultant()+"\t\t\t\t");
-//            sb.append(l.getSkill()+"\t\t\t");
-//            sb.append(l.getHours()+"\t\t");
-//            sb.append(l.getCharge()+"\n\n");
-//        }
+
 
     }
 
     /**
      * Create a string representation of this object, suitable for printing.
      *
-     * @return
+     * @return string value.
      */
+    @Override
     public String toString() {
-        String last = "=======";
-        return last;
+        StringBuilder sb=new StringBuilder();
+        sb.append(client);
+        sb.append("\t").append(invoiceMonth).append("\t").append(invoiceYear);
+        return sb.toString();
 
     }
 

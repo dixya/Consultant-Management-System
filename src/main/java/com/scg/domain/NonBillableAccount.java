@@ -6,39 +6,42 @@
 package com.scg.domain;
 
 /**
+ * Encapsulates the concept of a non-billable account, such as sick leave,
+ * vacation, or business development.
  *
  * @author dixya
  */
 public enum NonBillableAccount implements Account {
 
-//Encapsulates the concept of a non-billable account. 
+    SICK_LEAVE,
+    VACATION,
+    BUSINESS_DEVELOPMENT;
 
     /**
-     *
+     * Getter for the name of this account.
+     * @return name
      */
-      SICK_LEAVE,
-      VACATION,
-      BUSINESS_DEVELOPMENT;
-
-
     @Override
     public String getName() {
         return name();
     }
 
+    /**
+     * Determines if this account is billable.
+     * @return boolean value.
+     */
     @Override
     public boolean isBillable() {
         return false;
     }
-      @Override
-    public String toString(){
+    
+    /**
+     * Returns the friendly name for this enumerated value.
+     * @return 
+     */
+    @Override
+    public String toString() {
         return this.name();//Returns the friendly name for this enumerated value.
     }
-    
-    
-
-
-
-
 
 }

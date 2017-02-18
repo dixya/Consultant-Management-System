@@ -1,137 +1,173 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.scg.domain;
 
-import java.time.LocalDate;
+import com.scg.util.Address;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import com.scg.util.Name;
+import static com.scg.util.StateCode.WA;
+import java.time.LocalDate;
 
 /**
- *
- * @author dixya
+ * JUnit test for the TimeCard class.
  */
-public class TimeCardTest {
-    
-    public TimeCardTest() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+public final class TimeCardTest {
+    /** Constant for test year. */
+    private static final int TEST_YEAR = 2004;
+    /** Constant for hours per day. */
+    private static final int HOURS_PER_DAY = 8;
+    /** Constant for start day. */
+    private static final int START_DAY = 6;
+    /** Constant for expected total hours. */
+    private static final int EXPECTED_TOTAL_HOURS = 16;
+    /** Constant for expected total billable hours. */
+    private static final int EXPECTED_TOTAL_BILLABLE_HOURS = 16;
+    /** Constant for expected total non-billable hours. */
+    private static final int EXPECTED_TOTAL_NON_BILLABLE_HOURS = 16;
+    /** Constant for expected consulting hours. */
+    private static final int EXPECTED_CONSULTING_HOURS = 3;
+    /** Constant for expected billable consulting hours. */
+    private static final int EXPECTED_BILLABLE_CONSULTING_HOURS = 24;
+    /** Constant for expected non-billable consulting hours. */
+    private static final int EXPECTED_NON_BILLABLE_CONSULTING_HOURS = 32;
+    /** TimeCard for test. */
+    private TimeCard timecard;
+    /** ClientAccount for test. */
+    private ClientAccount client;
+    /** Calendar for test. */
+    private final Calendar calendar = new GregorianCalendar(TEST_YEAR, Calendar.JANUARY, START_DAY);
+    /** Date for test. */
+    private LocalDate date;
+    private Date date1;
+    /** Date representing next day for test. */
+    private LocalDate nextDay;
+    /** Consultant for test. */
+    private Consultant programmer;
 
     /**
-     * Test of addConsultantTime method, of class TimeCard.
+     * Perform test setup.
      */
-    @Test
-    public void testAddConsultantTime() {
-        System.out.println("addConsultantTime");
-        ConsultantTime consultantTime = null;
-        TimeCard instance = null;
-        instance.addConsultantTime(consultantTime);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Before
+    public void setUp() {
+        client = new ClientAccount("Acme Industries",
+                new Name("Contact", "Guy"),new Address("33","Seattle",WA,"98036"));
+        programmer = new Consultant(new Name("Programmer", "J.", "Random"));
+        date1= calendar.getTime();
+        timecard = new TimeCard(programmer, date);
+        final NonBillableAccount nonbillableaccount = NonBillableAccount.VACATION;
+        ConsultantTime consultantTime = new ConsultantTime(date, client,
+                Skill.SYSTEM_ARCHITECT, HOURS_PER_DAY);
+        timecard.addConsultantTime(consultantTime);
+        calendar.roll(Calendar.DAY_OF_MONTH, 1);
+        //nextDay = calendar.getTime();
+        consultantTime = new ConsultantTime(date, nonbillableaccount,
+                Skill.SYSTEM_ARCHITECT, HOURS_PER_DAY);
+        timecard.addConsultantTime(consultantTime);
+
     }
 
     /**
-     * Test of getConsultant method, of class TimeCard.
+     * Perform test tear down.
+     */
+    @After
+    public void tearDown() {
+        timecard = null;
+    }
+
+    /**
+     * Tests the getConsultant method.
      */
     @Test
     public void testGetConsultant() {
-        System.out.println("getConsultant");
-        TimeCard instance = null;
-        Consultant expResult = null;
-        Consultant result = instance.getConsultant();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull("getConsultant() failed", timecard.getConsultant());
     }
 
     /**
-     * Test of getTotalBillableHours method, of class TimeCard.
+     * Tests the getTotalBillableHours method.
      */
     @Test
     public void testGetTotalBillableHours() {
-        System.out.println("getTotalBillableHours");
-        TimeCard instance = null;
-        int expResult = 0;
-        int result = instance.getTotalBillableHours();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(HOURS_PER_DAY, timecard.getTotalBillableHours());
     }
 
     /**
-     * Test of getTotalHours method, of class TimeCard.
-     */
-    @Test
-    public void testGetTotalHours() {
-        System.out.println("getTotalHours");
-        TimeCard instance = null;
-        int expResult = 0;
-        int result = instance.getTotalHours();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTotalNonBillableHours method, of class TimeCard.
+     * Tests the getTotalNonBillableHours method.
      */
     @Test
     public void testGetTotalNonBillableHours() {
-        System.out.println("getTotalNonBillableHours");
-        TimeCard instance = null;
-        int expResult = 0;
-        int result = instance.getTotalNonBillableHours();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(HOURS_PER_DAY, timecard.getTotalNonBillableHours());
     }
 
     /**
-     * Test of getWeekStartingDay method, of class TimeCard.
+     * Tests the getConsultingHours method.
      */
     @Test
-    public void testGetWeekStartingDay() {
-        System.out.println("getWeekStartingDay");
-        TimeCard instance = null;
-        LocalDate expResult = null;
-        LocalDate result = instance.getWeekStartingDay();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetConsultingHours() {
+        assertEquals(2, timecard.getConsultingHours().size());
     }
 
     /**
-     * Test of toReportString method, of class TimeCard.
+     * Tests the getTotalHours method.
      */
     @Test
-    public void testToReportString() {
-        System.out.println("toReportString");
-        TimeCard instance = null;
-        String expResult = "";
-        String result = instance.toReportString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetTotalHours() {
+        assertEquals(EXPECTED_TOTAL_HOURS, timecard.getTotalHours());
     }
 
     /**
-     * Test of toString method, of class TimeCard.
+     * Tests the getBillableHoursForClient method.
      */
     @Test
-    public void testToString() {
-        System.out.println("toString");
-        TimeCard instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetBillableHoursForClient() {
+        assertEquals(1, timecard.getBillableHoursForClient(client.getName()).size());
     }
+
+    /**
+     * Tests the addConsultantTime method.
+     */
+    @Test
+    public void testAddConsultantTime() {
+        ConsultantTime consultantTime = new ConsultantTime(date,
+                client, Skill.SYSTEM_ARCHITECT, HOURS_PER_DAY);
+        timecard.addConsultantTime(consultantTime);
+        assertEquals("addConsultantTime() failed to add ConsultantTime",
+                     EXPECTED_CONSULTING_HOURS, timecard.getConsultingHours().size());
+        assertEquals("addConsultantTime() failed to update totalHours (billable)",
+                     EXPECTED_BILLABLE_CONSULTING_HOURS, timecard.getTotalHours());
+        assertEquals("addConsultantTime() failed to update totalBillableHours",
+                EXPECTED_TOTAL_BILLABLE_HOURS, timecard.getTotalBillableHours());
+
+        consultantTime = new ConsultantTime(nextDay,
+                NonBillableAccount.VACATION, Skill.UNKNOWN_SKILL, HOURS_PER_DAY);
+        timecard.addConsultantTime(consultantTime);
+        assertEquals("addConsultantTime() failed to update nonBillableHours",
+                EXPECTED_TOTAL_NON_BILLABLE_HOURS, timecard.getTotalNonBillableHours());
+        assertEquals("addConsultantTime() failed to update totalHours (non-billable)",
+                     EXPECTED_NON_BILLABLE_CONSULTING_HOURS, timecard.getTotalHours());
+    }
+
+//    /**
+//     * Tests the toString method.
+//     */
+//    @Test
+//    public void testToStringMethods() {
+//
+//        ConsultantTime consultantTime = new ConsultantTime(date,
+//                client, Skill.SOFTWARE_ENGINEER, HOURS_PER_DAY);
+//        timecard.addConsultantTime(consultantTime);
+//        consultantTime = new ConsultantTime(date,
+//                NonBillableAccount.VACATION, Skill.UNKNOWN_SKILL, HOURS_PER_DAY);
+//        timecard.addConsultantTime(consultantTime);
+//        assertTrue(timecard.toString() != null && !timecard.toString().isEmpty());
+//        assertTrue(timecard.toReportString() != null && !timecard.toReportString().isEmpty());
+//    }
 }

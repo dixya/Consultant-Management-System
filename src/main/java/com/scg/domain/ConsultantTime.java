@@ -17,17 +17,32 @@ public class ConsultantTime {
     private Account account;
     private final Skill skillType;
     private int hours;
-
+    /**
+     * Constructor for initialization
+     * @param date initializes date
+     * @param account initializes account 
+     * @param skillType initializes skill
+     * @param hours initializes hours
+     */
     public ConsultantTime(LocalDate date, Account account, Skill skillType, int hours){
         this.date=date;
         this.account = account;
         this.skillType=skillType;
         setHours(hours);
     }
+    
+    /**
+     * Getter for property account.
+     * @return account
+     */
 
     public Account getAccount() {
-        return account;//Getter for property account.
+        return account;
     }
+    /**
+     * Getter for property Date.
+     * @return date
+     */
     public LocalDate getDate(){
         return date;
         
@@ -48,14 +63,26 @@ public class ConsultantTime {
     public Skill getSkill(){
         return skillType;
     }
+    /**
+     * Checks if account is billable
+     * @return boolean value
+     */
     public boolean isBillable(){
         return account.isBillable();
     }
+    /**
+     * Setter for property account.
+     * @param account 
+     */
     public void setAccount(Account account){
-        this.account=account;//Setter for property account.
+        this.account=account;
     }
+    /**
+     * Setter for property date.
+     * @param date 
+     */
     public void setDate(LocalDate date){  
-       this.date=date; //Setter for property date.
+       this.date=date; 
     }
 
     /**
@@ -68,7 +95,10 @@ public class ConsultantTime {
             throw new IllegalArgumentException("New value of property hours must be > 0.");
         this.hours=hours;
     }
-
+    /**
+     * Generates hashCode for the property date,account,skillType.
+     * @return hash value 
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -78,7 +108,12 @@ public class ConsultantTime {
         hash = 67 * hash + this.hours;
         return hash;
     }
-
+    
+    /**
+     * Compares the property date,account,skillType
+     * @param obj
+     * @return boolean value
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -106,7 +141,10 @@ public class ConsultantTime {
         return true;
     }
     
-    
+    /**
+     * Prints the properties of consultanttime in string format.
+     * @return string
+     */
     @Override
     public String toString(){
         StringBuilder sb=new StringBuilder();

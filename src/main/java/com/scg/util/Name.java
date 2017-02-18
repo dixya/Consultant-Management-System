@@ -93,10 +93,19 @@ public final class Name {
     public void setLastName(String lastName) {
         this.lname = lastName;
     }
+    /**
+     * setter for middle name.
+     *
+     * @param MiddleName
+     */
 
     public void setMiddleName(String middleName) {
         this.mname = middleName;//Setter for property middleName.
     }
+    /**
+     * Prints name in specific format.
+     * @return String
+     */
 
     public String toString() {
         final StringBuilder namepattern = new StringBuilder();

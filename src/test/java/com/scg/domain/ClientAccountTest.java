@@ -5,7 +5,9 @@
  */
 package com.scg.domain;
 
+import com.scg.util.Address;
 import com.scg.util.Name;
+import com.scg.util.StateCode;
 import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -15,28 +17,31 @@ import static org.junit.Assert.*;
  * @author dixya
  */
 public class ClientAccountTest {
-    
+
+    Name n = new Name("Coyote", "Wiley");
+    Address address = new Address("32", "lynnwood", StateCode.valueOf("WA"), "98036");
+
     public ClientAccountTest() {
     }
 
     @Test
     public void testClientAccount() {
-        Name n=new Name("Coyote","Wiley");   
-        ClientAccount clientAccount=new ClientAccount("Dixya Lamichhane", n);
+        ClientAccount clientAccount = new ClientAccount("Dixya Lamichhane", n, address);
         Assert.assertEquals(n, clientAccount.getContact()); //tests getName of clientAccount.
-       Assert.assertEquals("Dixya Lamichhane", clientAccount.getName());
+        Assert.assertEquals("Dixya Lamichhane", clientAccount.getName());
+        Assert.assertEquals(address, clientAccount.getAddress());
     }
+
     @Test
-    public void testGetSetClientContact(){
-        Name client=new Name("Hello","World");
+    public void testGetSetClientContact() {
+        Name client = new Name("Hello", "World");
         client.setFirstName("Hello");
         client.setMiddleName("Everyone");
         client.setLastName("World");
-        Assert.assertEquals("World",client.getLastName());
-        Assert.assertEquals("Hello",client.getFirstName());
-        Assert.assertEquals("Everyone",client.getMiddleName());       
-        
-        
+        Assert.assertEquals("World", client.getLastName());
+        Assert.assertEquals("Hello", client.getFirstName());
+        Assert.assertEquals("Everyone", client.getMiddleName());
+
     }
-    
+
 }

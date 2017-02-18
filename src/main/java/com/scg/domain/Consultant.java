@@ -7,7 +7,7 @@ package com.scg.domain;
 import com.scg.util.Name;
 
 /**
- *
+ * A consultant.
  * @author dixya
  */
 public class Consultant extends Object {
@@ -15,16 +15,29 @@ public class Consultant extends Object {
     String ConsultantMiddleName;
     String ConsultantLastName;
 
+    /**
+     * Creates a new instance of Consultant.
+     * @param name 
+     */
     public Consultant(Name name){
        this.ConsultantFirstName= name.getFirstName();
        this.ConsultantMiddleName= name.getMiddleName();
        this.ConsultantLastName= name.getLastName();
     }
+    
+    /**
+     * Getter for property name.
+     * @return consultant name
+     */
     public Name getName(){
         Name ConsultantName=new Name(ConsultantLastName,ConsultantFirstName,ConsultantMiddleName);
         return ConsultantName;       
         
     }
+    /**
+     * Returns the string representation of the consultant's name.
+     * @return string value.
+     */
     @Override
     public String toString(){
         StringBuilder ConsName=new StringBuilder();
@@ -32,7 +45,7 @@ public class Consultant extends Object {
         ConsName.append(",");
         ConsName.append(ConsultantFirstName);
         if(ConsultantMiddleName!=null){
-             ConsName.append(",");
+             ConsName.append(" ");
         ConsName.append(ConsultantMiddleName);
 
         }

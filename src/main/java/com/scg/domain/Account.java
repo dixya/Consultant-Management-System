@@ -6,7 +6,7 @@
 package com.scg.domain;
 
 /**
- *
+ * Interface all accounts must implement.
  * @author dixya
  */
 public interface Account {

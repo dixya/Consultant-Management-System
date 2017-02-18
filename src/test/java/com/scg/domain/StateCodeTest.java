@@ -5,6 +5,7 @@
  */
 package com.scg.domain;
 
+import com.scg.util.StateCode;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,13 +14,14 @@ import static org.junit.Assert.*;
  * @author dixya
  */
 public class StateCodeTest {
+    //private StateCode stateCode;
     
     public StateCodeTest() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testStateCode(){
+       assertEquals("WA",StateCode.WA.toString());
+        
+    }
 }

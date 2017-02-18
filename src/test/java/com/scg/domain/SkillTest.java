@@ -1,22 +1,53 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.scg.domain;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+
 /**
- * Test for {@link Skill}
- * @author dixya
+ * JUnit test for the Skill class.
  */
-public class SkillTest {
-    
-    @Test
-    public void testSkillEnum() {
-        Assert.assertEquals(Skill.PROJECT_MANAGER, Skill.values()[0]);
+public final class SkillTest {
+    /** Hourly rate. */
+    private static final int HOURLY_RATE =  150;
+
+    /** Skill instance for test. */
+    private Skill skill;
+
+    /**
+     * Perform test setup.
+     */
+    @Before
+    public void setUp() {
+        skill = Skill.valueOf("SOFTWARE_ENGINEER");
     }
-    
+
+    /**
+     * Perform test tear down.
+     */
+    @After
+    public void tearDown() {
+        skill = null;
+    }
+
+    /**
+     * Test getName method.
+     */
+    @Test
+    public void testToString() {
+        assertEquals("constructor failed to correctly set name",
+                "SOFTWARE_ENGINEER", skill.toString());
+    }
+
+    /**
+     * Test getRate method.
+     */
+    @Test
+    public void testGetRate() {
+        assertEquals("constructor failed to correctly set rate",
+                HOURLY_RATE, skill.getRate());
+    }
 }

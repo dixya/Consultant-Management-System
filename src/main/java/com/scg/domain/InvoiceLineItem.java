@@ -39,7 +39,7 @@ public class InvoiceLineItem {
     }
     /**
      * Get the charge for this line item.
-     * @return 
+     * @return charge.
      */
     int getCharge(){
        //charge=skill.getRate()*hours;
@@ -48,7 +48,7 @@ public class InvoiceLineItem {
     }
     /**
      * Get the consultant for this line item.
-     * @return 
+     * @return consultant.
      */
     Consultant 	getConsultant(){
         return consultant;
@@ -56,7 +56,7 @@ public class InvoiceLineItem {
     }
     /**
      * Get the hours for this line item.
-     * @return 
+     * @return hours.
      */
     int getHours(){
         return hours;
@@ -64,7 +64,7 @@ public class InvoiceLineItem {
     }
     /**
      * Get the skill for this line item.
-     * @return 
+     * @return skill.
      */
     Skill getSkill(){
         return skill;
@@ -72,7 +72,7 @@ public class InvoiceLineItem {
     }
     /**
      * Print the date, consultant, skill, hours and charge for this line item.
-     * @return 
+     * @return string value.
      */
     @Override
     public String toString(){
