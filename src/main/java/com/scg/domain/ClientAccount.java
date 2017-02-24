@@ -17,7 +17,7 @@ import java.util.Properties;
  * Creates a new instance of ClientAccount.
  * @author dixya
  */
-public class ClientAccount implements Account{
+public class ClientAccount implements Account,Comparable<ClientAccount>{
     private  String name;
     private  Name contact;
     private Address address;
@@ -104,4 +104,11 @@ public class ClientAccount implements Account{
 		}
     
 }
+
+    @Override
+    public int compareTo(ClientAccount t) {
+        int nameResult=(this.getName()).compareTo(t.getName());
+            return nameResult;
+        
+    }
 }

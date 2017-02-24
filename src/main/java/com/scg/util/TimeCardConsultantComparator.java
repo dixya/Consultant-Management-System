@@ -23,7 +23,25 @@ public class TimeCardConsultantComparator implements Comparator<TimeCard>{
      * @param secondTimeCard  the second object to be compared.
      * @return 
      */
+    @Override
     public int compare(TimeCard firstTimeCard, TimeCard secondTimeCard){
+        int consultantResult=firstTimeCard.getConsultant().getName().compareTo(secondTimeCard.getConsultant().getName());
+        if(consultantResult!=0)
+            return consultantResult ;
+        int timeCardWeekResult=firstTimeCard.getWeekStartingDay().compareTo(secondTimeCard.getWeekStartingDay());
+        if(timeCardWeekResult!=0)
+            return timeCardWeekResult;
+        
+        if(firstTimeCard.getTotalHours()<secondTimeCard.getTotalHours())
+            return -1;
+                   
+         if(firstTimeCard.getTotalBillableHours()<secondTimeCard.getTotalBillableHours())   
+             return -1;
+         if(firstTimeCard.getTotalNonBillableHours()<secondTimeCard.getTotalNonBillableHours())
+             return -1;
+         else
+             return 0;
+        
         
     }
     

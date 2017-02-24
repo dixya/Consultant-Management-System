@@ -10,7 +10,7 @@ import com.scg.util.Name;
  * A consultant.
  * @author dixya
  */
-public class Consultant extends Object {
+public class Consultant implements Comparable<Consultant>{
     String ConsultantFirstName;
     String ConsultantMiddleName;
     String ConsultantLastName;
@@ -50,6 +50,12 @@ public class Consultant extends Object {
 
         }
         return ConsName.toString();
+    }
+
+    @Override
+    public int compareTo(Consultant t) {
+        int consultantResult=(this.getName()).compareTo(t.getName());
+        return consultantResult;
     }
     
 }

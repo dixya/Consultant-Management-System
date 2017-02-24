@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author dixya
  */
-public final class Name {
+public final class Name implements Comparable<Name>{
 
     private String fname;
     private String lname;
@@ -119,6 +119,27 @@ public final class Name {
         }
         return namepattern.toString();
 
+    }
+
+    @Override
+    public int compareTo(Name t) {
+        int lastNameResult = (this.lname).compareTo(t.lname);
+        if(lastNameResult != 0) {
+            return lastNameResult;
+        }
+        else{
+        int firstNameResult = (this.fname).compareTo(t.fname);
+        if(firstNameResult != 0) 
+            return firstNameResult;
+        else{
+            if(mname!=null){
+            int middleNameResult=(this.mname).compareTo(t.mname);
+            return middleNameResult;
+            }
+            else
+                return firstNameResult;
+        }
+    }
     }
 
 }

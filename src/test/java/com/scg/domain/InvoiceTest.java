@@ -68,23 +68,23 @@ public class InvoiceTest {
 
     }
 
-    @Test
-    public void testToReportString() {
-        Properties prop = new Properties();
-        String propFileName = "invoice.properties";
-        String bizStreet = prop.getProperty("businessStreet");
-        String bizCity = prop.getProperty("businessCity");
-        String bizState = prop.getProperty("businessState");
-        String bizZip = prop.getProperty("businessZip");
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-        Address bizAddress = new Address(bizStreet, bizCity, StateCode.WA, bizZip);
-        InvoiceHeader header = new InvoiceHeader(prop.getProperty("businessName"), bizAddress, clientAccount, newInvoice.getStartDate(), newInvoice.getInvoiceMonth());
-
-        assertEquals(newInvoice.bizName, prop.getProperty("businessName"));
-        assertEquals(newInvoice.bizCity, bizCity);
-        assertEquals(newInvoice.bizState, bizState);
-        assertEquals(newInvoice.bizZip, bizZip);
-
-    }
+//    @Test
+//    public void testToReportString() {
+//        Properties prop = new Properties();
+//        String propFileName = "invoice.properties";
+//        String bizStreet = prop.getProperty("businessStreet");
+//        String bizCity = prop.getProperty("businessCity");
+//        String bizState = prop.getProperty("businessState");
+//        String bizZip = prop.getProperty("businessZip");
+//        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+//
+//        Address bizAddress = new Address(bizStreet, bizCity, StateCode.WA, bizZip);
+//        InvoiceHeader header = new InvoiceHeader(prop.getProperty("businessName"), bizAddress, clientAccount, newInvoice.getStartDate(), newInvoice.getInvoiceMonth());
+//
+//        assertEquals(newInvoice.bizName, prop.getProperty("businessName"));
+//        assertEquals(newInvoice.bizCity, bizCity);
+//        assertEquals(newInvoice.bizState, bizState);
+//        assertEquals(newInvoice.bizZip, bizZip);
+//
+//    }
 }

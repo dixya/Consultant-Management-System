@@ -35,6 +35,13 @@ public class NameTest {
         assertEquals("last,first middle",newName.toString());
         
     }
+    @Test
+    public void testCompareTo(){
+                Name newName=new Name("last","first","middle");
+                int x=newName.compareTo(new Name("abc","jpg","gif"));
+                assertEquals(11,x);
+        
+    }
 
     
 }

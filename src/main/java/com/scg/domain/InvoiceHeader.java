@@ -31,7 +31,7 @@ public class InvoiceHeader {
      * @param invoiceDate
      * @param invoiceForMonth 
      */
-    InvoiceHeader(String businessName, Address businessAddress, ClientAccount client, LocalDate invoiceDate, Month invoiceForMonth){
+    public InvoiceHeader(String businessName, Address businessAddress, ClientAccount client, LocalDate invoiceDate, Month invoiceForMonth){
         this.businessName=businessName;
         this.businessAddress=businessAddress;
         this.client=client;

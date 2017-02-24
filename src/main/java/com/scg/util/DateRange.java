@@ -13,71 +13,101 @@ import java.time.Month;
  * @author dixya
  */
 public class DateRange {
+
     LocalDate startingDate;
     LocalDate endingDate;
     Month month;
     int year;
-    String start;
-    String end;
+
     /**
      * Construct a DateRange given two dates.
+     *
      * @param startDate
-     * @param endDate 
+     * @param endDate
      */
-    DateRange(LocalDate startDate, LocalDate endDate){
-        this.startingDate=startDate;
-        this.endingDate=endDate;
+    public DateRange(LocalDate startDate, LocalDate endDate) {
+        this.startingDate = startDate;
+        this.endingDate = endDate;
     }
-    
+
     /**
      * Construct a DateRange for the given month.
+     *
      * @param month
-     * @param year 
+     * @param year
      */
-    DateRange(Month month, int year){
-        this.month=month;
-        this.year=year;
-        
+    public DateRange(Month month, int year) {
+        this.month = month;
+        this.year = year;
+        this.startingDate = LocalDate.of(year, month, 1);
+        if ((this.year % 400 == 0) || ((this.year % 4 == 0) && (this.year % 100 != 0))) {
+            if (this.month == Month.FEBRUARY) {
+                this.endingDate = LocalDate.of(year, month, 29);
+            } else if (this.month == Month.JANUARY || this.month == month.MARCH || this.month == month.MAY || this.month == month.JULY || this.month == month.AUGUST || this.month == month.OCTOBER || this.month == month.DECEMBER) {
+                this.endingDate = LocalDate.of(year, month, 31);
+            } else {
+                this.endingDate = LocalDate.of(year, month, 30);
+            }
+        } else if (this.month == Month.FEBRUARY) {
+            this.endingDate = LocalDate.of(year, month, 28);
+        } else if (this.month == Month.JANUARY || this.month == Month.MARCH || this.month == month.MAY || this.month == month.JULY || this.month == month.AUGUST || this.month == month.OCTOBER || this.month == month.DECEMBER) {
+            this.endingDate = LocalDate.of(year, month, 31);
+        } else {
+            this.endingDate = LocalDate.of(year, month, 30);
+        }
+
     }
-    
+
     /**
      * Construct a DateRange given two date strings in the correct format.
-     * @param start     the start date for this DateRange.     
+     *
+     * @param start the start date for this DateRange.
      * @param end the end date for this DateRange.
      */
-    DateRange(String start, String end){
-        this.start=start;
-        this.end=end;
-        
-        
+    public DateRange(String start, String end) {
+        int startYear = Integer.parseInt(start.substring(0, 4));
+        int startMonth = Integer.parseInt(start.substring(5, 7));
+        int startDay = Integer.parseInt(start.substring(8, 10));
+        this.startingDate = LocalDate.of(startYear, startMonth, startDay);
+        int endYear = Integer.parseInt(end.substring(0, 4));
+        int endMonth = Integer.parseInt(end.substring(5, 7));
+        int endDay = Integer.parseInt(end.substring(8, 10));
+        this.endingDate = LocalDate.of(endYear, endMonth, endDay);
+
     }
-    
+
     /**
      * Returns the end date for this DateRange.
-     * @return 
+     *
+     * @return
      */
-   public LocalDate getEndDate(){
-       return endingDate;
-       
-   }
-   
-   /**
-    * Returns the start date for this DateRange.
-    * @return 
-    */
-   LocalDate getStartDate(){
-       return startingDate;
-       
-   }
-   /**
-    * Returns true if the specified date is within the range start date <= date <= end date.
-    * @param date the date to check for being within this DateRange.
-    * @return true if the specified date is within this DateRange.
-    */
-   
-   boolean isInRange(LocalDate date){
-        return ((date.isEqual(startingDate)||date.isAfter(startingDate))&& (date.isEqual(endingDate)||date.isBefore(endingDate)));
-       
-   }
-    
+    public LocalDate getEndDate() {
+        return endingDate;
+
+    }
+
+    /**
+     * Returns the start date for this DateRange.
+     *
+     * @return
+     */
+    public LocalDate getStartDate() {
+        return startingDate;
+
+    }
+
+    /**
+     * Returns true if the specified date is within the range start date <= date
+     * <= end date.
+    * @para
+     *
+     * m date the date to check for being within this DateRange.
+     * @return true if the specified date is within this DateRange.
+     */
+
+    public boolean isInRange(LocalDate date) {
+        return ((date.isEqual(startingDate) || date.isAfter(startingDate)) && (date.isEqual(endingDate) || date.isBefore(endingDate)));
+
+    }
+
 }

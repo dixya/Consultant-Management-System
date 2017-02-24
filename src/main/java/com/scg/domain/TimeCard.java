@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Timecard creates timecard for each consultant.
  * @author dixya
  */
-public class TimeCard {
+public class TimeCard implements Comparable<TimeCard>{
     private final Consultant consultant;
     private final LocalDate weekStartingDay;
     private final List<ConsultantTime> consultingHours;
@@ -55,11 +55,9 @@ public class TimeCard {
      */
     public List<ConsultantTime> getBillableHoursForClient(String clientName) {
         List<ConsultantTime> clientHours = new ArrayList<>();
-        for(ConsultantTime c : consultingHours) {
-            if(c.getAccount().getName().equals(clientName) && c.isBillable()) {
-                clientHours.add(c);
-            }
-        }
+        consultingHours.stream().filter((c) -> (c.getAccount().getName().equals(clientName) && c.isBillable())).forEach((c) -> {
+            clientHours.add(c);
+        });
         return clientHours;
     }
     
@@ -84,11 +82,9 @@ public class TimeCard {
     
     public int getTotalBillableHours() {
          billableHours = 0;
-        for(ConsultantTime c : consultingHours) {
-            if(c.isBillable()) {
-                billableHours += c.getHours();
-            }
-        }
+         consultingHours.stream().filter((c) -> (c.isBillable())).forEach((c) -> {
+             billableHours += c.getHours();
+        });
         return billableHours;
     }
     /**
@@ -97,9 +93,9 @@ public class TimeCard {
      */
     public int getTotalHours() {
          totalHours = 0;
-        for (ConsultantTime c : consultingHours) {
-            totalHours += c.getHours();
-        }
+         consultingHours.stream().forEach((c) -> {
+             totalHours += c.getHours();
+        });
         return totalHours;
     }
     /**
@@ -122,20 +118,20 @@ public class TimeCard {
      */
     
     public String toReportString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("===============================================================\n");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
-        sb.append("Consultant: " + consultant.getName() + "\t\t\t\t\t" + " Week Starting: " + weekStartingDay.format(formatter));
+        sb.append("Consultant: ").append(consultant.getName()).append("\t\t\t\t\t" + " Week Starting: ").append(weekStartingDay.format(formatter));
         sb.append("\n");
         sb.append("Billable Time:\n");
         sb.append("Account:\t\t\tDate\t\t\tHours\t\t\t\t\tSkill\n");
         sb.append("--------\t\t\t------------\n");
-        for(ConsultantTime c : consultingHours) {
-            if(c.isBillable()) {
-                sb.append(c.getAccount().getName() + "\t\t" + c.getDate() + "\t\t" + c.getHours() + "\t\t\t\t" + c.getSkill());
-                sb.append("\n");
-            }
-        }
+        consultingHours.stream().filter((c) -> (c.isBillable())).map((c) -> {
+            sb.append(c.getAccount().getName()).append("\t\t").append(c.getDate()).append("\t\t").append(c.getHours()).append("\t\t\t\t").append(c.getSkill());
+            return c;
+        }).forEach((_item) -> {
+            sb.append("\n");
+        });
         sb.append("NonBillable Time:\n");
 
         for(ConsultantTime c : consultingHours) {
@@ -160,5 +156,19 @@ public class TimeCard {
         sb.append(weekStartingDay);
         return sb.toString();
         
+    }
+
+    @Override
+    public int compareTo(TimeCard t) {
+        int consultantResult=(this.consultant.getName()).compareTo(t.consultant.getName());
+        if(consultantResult!=0)
+            return consultantResult;
+        else{
+            int weekStartingResult=(this.weekStartingDay).compareTo(t.getWeekStartingDay());
+            if(weekStartingResult!=0)
+                return weekStartingResult;
+            else
+                return consultantResult;
+        }
     }
 }

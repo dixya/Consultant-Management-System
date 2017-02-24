@@ -11,12 +11,12 @@ import java.util.Objects;
  *
  * @author dixya
  */
-public class Address {
+public class Address implements Comparable<Address> {
 
-    private String streetNumber;
-    private String city;
-    private StateCode state;
-    private String postalCode;
+    private final String streetNumber;
+    private final String city;
+    private final StateCode state;
+    private final String postalCode;
 
     /**
      * Construct an Address.
@@ -73,6 +73,7 @@ public class Address {
 
     /**
      * Gets the city for this address.
+     *
      * @return city in string format.
      */
     public String getCity() {
@@ -82,6 +83,7 @@ public class Address {
 
     /**
      * Gets the postal code for this address.
+     *
      * @return string value of postal code.
      */
     public String getPostalCode() {
@@ -91,6 +93,7 @@ public class Address {
 
     /**
      * Get the state for this address.
+     *
      * @return state code.
      */
     public StateCode getState() {
@@ -100,6 +103,7 @@ public class Address {
 
     /**
      * Get the street number for this address.
+     *
      * @return street number in string format.
      */
     public String getStreetNumber() {
@@ -120,9 +124,30 @@ public class Address {
         sb.append(streetNumber);
         sb.append("\nCity: ");
         sb.append(city);
-        sb.append("\nState postal code: ");
+        sb.append("\nState  ");
+        sb.append(state);
+        sb.append("\nPostal code");
         sb.append(postalCode);
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Address t) {
+        int StreetResult = this.streetNumber.compareTo(t.streetNumber);
+        if (StreetResult != 0) {
+            return StreetResult;
+        }
+        int CityResult = this.city.compareTo(t.city);
+        if (CityResult != 0) {
+            return CityResult;
+        }
+        int StateResult = this.state.compareTo(t.state);
+        if (StateResult != 0) {
+            return StateResult;
+        }
+
+        return this.postalCode.compareTo(t.postalCode);
+
     }
 
 }

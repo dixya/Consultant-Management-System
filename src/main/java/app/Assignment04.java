@@ -66,7 +66,7 @@ public final class Assignment04 {
      * @param invoices the invoices to print
      * @param out The output stream; can be System.out or a text file.
      */
-    private static void printInvoices(final List<Invoice> invoices, final PrintStream out) {
+    private static void printInvoices(final List<Invoice> invoices, final PrintStream out) throws IOException {
         for (final Invoice invoice : invoices) {
             out.println(invoice.toReportString());
         }
@@ -77,7 +77,7 @@ public final class Assignment04 {
      *
      * @param args Command line arguments.
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws IOException {
         // Create lists to be populated by factory
         final List<ClientAccount> accounts = new ArrayList<ClientAccount>();
         final List<Consultant> consultants = new ArrayList<Consultant>();
@@ -117,7 +117,7 @@ public final class Assignment04 {
         final List<Invoice> invoices = createInvoices(accounts, timeCards);
         // Print them
         System.out.println();
-        System.out.println("==================================================================================");
+        System.out.println("9=================================================================================");
         System.out.println("=============================== I N V O I C E S ==================================");
         System.out.println("==================================================================================");
         System.out.println();
