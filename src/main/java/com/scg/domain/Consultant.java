@@ -54,6 +54,7 @@ public class Consultant implements Comparable<Consultant>{
 
     @Override
     public int compareTo(Consultant t) {
+        //return name.compareTo(t.name);
         int consultantResult=(this.getName()).compareTo(t.getName());
         return consultantResult;
     }

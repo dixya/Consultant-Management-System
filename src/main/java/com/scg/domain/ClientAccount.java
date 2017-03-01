@@ -108,7 +108,10 @@ public class ClientAccount implements Account,Comparable<ClientAccount>{
     @Override
     public int compareTo(ClientAccount t) {
         int nameResult=(this.getName()).compareTo(t.getName());
-            return nameResult;
+           if(nameResult!=0) return nameResult;
+        int contactResult=(this.getContact()).compareTo(t.getContact());
+            if(contactResult!=0) return contactResult;
+        return address.compareTo(t.address);
         
     }
 }

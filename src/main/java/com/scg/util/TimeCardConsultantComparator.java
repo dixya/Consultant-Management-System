@@ -25,7 +25,7 @@ public class TimeCardConsultantComparator implements Comparator<TimeCard>{
      */
     @Override
     public int compare(TimeCard firstTimeCard, TimeCard secondTimeCard){
-        int consultantResult=firstTimeCard.getConsultant().getName().compareTo(secondTimeCard.getConsultant().getName());
+        int consultantResult=firstTimeCard.getConsultant().compareTo(secondTimeCard.getConsultant());
         if(consultantResult!=0)
             return consultantResult ;
         int timeCardWeekResult=firstTimeCard.getWeekStartingDay().compareTo(secondTimeCard.getWeekStartingDay());
@@ -33,7 +33,7 @@ public class TimeCardConsultantComparator implements Comparator<TimeCard>{
             return timeCardWeekResult;
         
         if(firstTimeCard.getTotalHours()<secondTimeCard.getTotalHours())
-            return -1;
+            return -1; //return BEfore;orif>return After;
                    
          if(firstTimeCard.getTotalBillableHours()<secondTimeCard.getTotalBillableHours())   
              return -1;

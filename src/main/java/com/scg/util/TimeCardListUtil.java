@@ -12,6 +12,7 @@ import com.scg.domain.Consultant;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -20,6 +21,8 @@ import java.util.Comparator;
 public class TimeCardListUtil {
 
     static List<TimeCard> timeCard = new ArrayList<>();
+    private static final int days_per_week=6;
+   // private static final TimeCardConsultantComparator consultantComparator=new TimeCardConsultantComparator();
 
     /**
      * Get a list of TimeCards for the specified consultant.
@@ -29,7 +32,9 @@ public class TimeCardListUtil {
      * @return
      */
     public static List<TimeCard> getTimeCardsForConsultant(List<TimeCard> timeCards, Consultant consultant) {
-        timeCards.stream().filter((t) -> (t.getConsultant() == consultant)).forEach((t) -> {
+        timeCards.stream().filter((t) -> {
+            return t.getConsultant().equals( consultant);
+        }).forEach((t) -> {
             timeCard.add(t);
         });
         return timeCard;
@@ -44,11 +49,12 @@ public class TimeCardListUtil {
      * @return
      */
     public static List<TimeCard> getTimeCardsForDateRange(List<TimeCard> timeCards, DateRange dateRange) {
+       // return timeCards.stream().filter(tc->dateRange.isInRange(tc.getWeekStartingDay())||(dateRange.isInRange(tc.getWeekStartingDay().plusDays(days_per_week))).collect(Collectors.toList()));
         List<TimeCard> timeCardWithinDateRange;
         timeCardWithinDateRange = new ArrayList<>();
         timeCards.stream().forEach((TimeCard t) -> {
             LocalDate timeCardDate = t.getWeekStartingDay();
-            if (dateRange.isInRange(timeCardDate)) {
+            if (dateRange.isInRange(timeCardDate)||dateRange.isInRange(timeCardDate.plusDays(days_per_week))) {
                 timeCardWithinDateRange.add(t);
             }
         });
@@ -61,8 +67,8 @@ public class TimeCardListUtil {
      * @param timeCards the list of time cards to sort
      */
     public static void sortByConsultantName(List<TimeCard> timeCards) {
-        Comparator comparator = (Comparator<TimeCard>) (TimeCard t, TimeCard t1) -> (t.getConsultant().getName()).compareTo(t1.getConsultant().getName());
-        Collections.sort(timeCards, comparator);
+        Comparator<TimeCard> comparator = (Comparator<TimeCard>) (TimeCard t, TimeCard t1) -> (t.getConsultant().getName()).compareTo(t1.getConsultant().getName());
+        Collections.sort(timeCards, comparator); //check it should be consultantcomparator
 
     }
 
@@ -72,7 +78,7 @@ public class TimeCardListUtil {
      * @param timeCards the list of time cards to sort
      */
     public static void sortByStartDate(List<TimeCard> timeCards) {
-        Comparator comparator = (Comparator<TimeCard>) (TimeCard t, TimeCard t1) -> t.getWeekStartingDay().compareTo(t1.getWeekStartingDay());
+        Comparator<TimeCard> comparator = (Comparator<TimeCard>) (TimeCard t, TimeCard t1) -> t.getWeekStartingDay().compareTo(t1.getWeekStartingDay());
 
         Collections.sort(timeCards, comparator);
 

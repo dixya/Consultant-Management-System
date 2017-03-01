@@ -45,17 +45,18 @@ public final class Assignment04 {
      */
     private static List<Invoice> createInvoices(final List<ClientAccount> accounts,
                                             final List<TimeCard> timeCards) {
-        final List<Invoice> invoices = new ArrayList<Invoice>();
+        final List<Invoice> invoices = new ArrayList<>();
 
         final List<TimeCard> timeCardList = TimeCardListUtil
                 .getTimeCardsForDateRange(timeCards, new DateRange(INVOICE_MONTH, INVOICE_YEAR));
-        for (final ClientAccount account : accounts) {
-            final Invoice invoice = new Invoice(account, INVOICE_MONTH, INVOICE_YEAR);
+        accounts.stream().map((account) -> new Invoice(account, INVOICE_MONTH, INVOICE_YEAR)).map((invoice) -> {
             invoices.add(invoice);
-            for (final TimeCard currentTimeCard : timeCardList) {
+            return invoice;
+        }).forEach((invoice) -> {
+            timeCardList.stream().forEach((currentTimeCard) -> {
                 invoice.extractLineItems(currentTimeCard);
-            }
-        }
+            });
+        });
 
         return invoices;
     }
@@ -67,21 +68,22 @@ public final class Assignment04 {
      * @param out The output stream; can be System.out or a text file.
      */
     private static void printInvoices(final List<Invoice> invoices, final PrintStream out) throws IOException {
-        for (final Invoice invoice : invoices) {
+        invoices.stream().forEach((invoice) -> {
             out.println(invoice.toReportString());
-        }
+        });
     }
 
     /**
      * The application method.
      *
      * @param args Command line arguments.
+     * @throws java.io.IOException
      */
     public static void main(final String[] args) throws IOException {
         // Create lists to be populated by factory
-        final List<ClientAccount> accounts = new ArrayList<ClientAccount>();
-        final List<Consultant> consultants = new ArrayList<Consultant>();
-        final List<TimeCard> timeCards = new ArrayList<TimeCard>();
+        final List<ClientAccount> accounts = new ArrayList<>();
+        final List<Consultant> consultants = new ArrayList<>();
+        final List<TimeCard> timeCards = new ArrayList<>();
         ListFactory.populateLists(accounts, consultants, timeCards);
         // Print them
         ListFactory.printTimeCards(timeCards, System.out);
@@ -97,15 +99,15 @@ public final class Assignment04 {
 
         TimeCardListUtil.sortByStartDate(timeCards);
         System.out.println("Time cards by date:");
-        for (TimeCard tc : timeCards) {
-        	System.out.printf("  %s, %s%n", tc.getWeekStartingDay(), tc.getConsultant());
-        }
+        timeCards.stream().forEach((tc) -> {
+            System.out.printf("  %s, %s%n", tc.getWeekStartingDay(), tc.getConsultant());
+        });
         
         TimeCardListUtil.sortByConsultantName(timeCards);
         System.out.println("Time cards by consultant:");
-        for (TimeCard tc : timeCards) {
-        	System.out.printf("  %s, %s%n", tc.getWeekStartingDay(), tc.getConsultant());
-        }
+        timeCards.stream().forEach((tc) -> {
+            System.out.printf("  %s, %s%n", tc.getWeekStartingDay(), tc.getConsultant());
+        });
 
         accounts.clear();
         consultants.clear();
@@ -117,7 +119,7 @@ public final class Assignment04 {
         final List<Invoice> invoices = createInvoices(accounts, timeCards);
         // Print them
         System.out.println();
-        System.out.println("9=================================================================================");
+        System.out.println("==================================================================================");
         System.out.println("=============================== I N V O I C E S ==================================");
         System.out.println("==================================================================================");
         System.out.println();

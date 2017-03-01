@@ -231,11 +231,12 @@ public final class Invoice {
             if (itemsPrinted % ITEMS_PER_PAGE == 0) {
                 invoiceFooter.incrementPageNumber();
                 formatter.format("%s%n%s", invoiceFooter, invoiceHeader);
+                
             }
         }
         invoiceFooter.incrementPageNumber();
 
-        formatter.format("%nTotal: %60d  %,10.2f", totalHours, (double)totalCharges)
+        formatter.format("%nTotal: %50d  %,10.2f", totalHours, (double)totalCharges)
                  .format("%s", invoiceFooter);
         final String s = formatter.toString();
         formatter.close();

@@ -11,13 +11,14 @@ package com.scg.domain;
  */
 public class InvoiceFooter {
     private String businessName;
-    int pageNo=0;
+    int pageNo;
     /**
      * Construct an InvoiceFooter.
      * @param businessName - name of buisness to include in footer.
      */
     public InvoiceFooter(String businessName){
         this.businessName=businessName;
+        this.pageNo=0;
     }
     /**
      * Increment the current page number by one.

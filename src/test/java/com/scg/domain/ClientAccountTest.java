@@ -43,5 +43,12 @@ public class ClientAccountTest {
         Assert.assertEquals("Everyone", client.getMiddleName());
 
     }
+    @Test
+    public void testClientAccountComparable(){
+        Name client=new Name("Hello","World");
+        int result=client.compareTo(new Name("Hello","World"));
+        Assert.assertEquals(0,result);
+        
+    }
 
 }
